@@ -1,0 +1,9 @@
+apiVersion: scheduling.caicloud.io/v1alpha1
+kind: PodGroup
+metadata:
+  name: pg-demo
+  namespace: default
+spec:
+  minMember: 3
+status:
+  phase: Pending

@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    metadata:
+      labels:
+        "scheduling.k8s.io/group-name": "pg-demo"
+    spec:
+      schedulerName: coscheduling
+      terminationGracePeriodSeconds: 5
+      containers:
+        - image: busybox:latest
+          imagePullPolicy: IfNotPresent
+          name: busybox
+          command: ["sleep", "3600"]
+          resources:
+            requests:
+              cpu: "128m"
+      restartPolicy: Never
+  backoffLimit: 3
+  parallelism: 3
